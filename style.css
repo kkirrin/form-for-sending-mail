@@ -1,0 +1,349 @@
+Обнуление 
+/* Убираем все зазоры */
+*,
+::after,
+::before {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    line-height: 1;
+    background-color: bisque;
+    font-size: 14px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+
+
+/* --------------------- */
+
+
+/* Свойство margin 0 auto ставит данный элемент по центру */
+/* Основные стили */
+
+
+/* Обращение ко всем элементам внутри form */
+
+.form *{
+    /* Убираем выделение при нажатии tab */
+    outline: none;
+}
+.form {
+    max-width: 550px;
+    margin: 0px auto;
+    color: rgb(32, 28, 28);
+    padding: 30px 0;
+}
+
+/* .form__body {
+
+
+} */
+
+
+
+
+.form__body {
+    position: relative;
+}
+
+.form__body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:  rgba(32, 18, 18, 0.9) url("loading.gif") center / 50px no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.form__body._sending::after {
+    opacity: 1;
+    visibility: visible;
+}
+.form__title {
+    font-size:  20px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.form__item {
+    margin-bottom: 20px;
+}
+
+/* display block делает элементы друг под другом  */
+.form__label{
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+}
+
+.form__input{
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    transition: 0.5s ease 0s;
+}
+
+.form__input:focus {
+    box-shadow: 10px 10px 15px rgba(47, 182, 29, 0.342);
+}
+
+
+.form__input._error{
+    box-shadow: 0 0 15px red;
+}
+
+/* resize отвечает за то, что менять размер можно было только по вертикали */
+textarea.form__input {
+    min-height: 120px;
+    resize: vertical;
+    padding: 20px;
+}
+/* Радиокнопки */
+
+.options{
+    padding: 10px 0 0 0;
+    
+}
+
+.options__input{
+    display: none;
+
+}
+
+/* При помощи псевдоэлемента 1 и псевдокласса 0  добавляем  */
+.options__input:checked + .options__label::after {
+    transform: scale(1);
+}
+.options__label{
+    font-size: 16px;
+    /* inline - чтобы объекты не распространялись на всю ширину  */
+    line-height: 140%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Рисуем кружки при помощи псевдоэлементов  */
+.options__label::before {
+    content: "";
+    align-self: flex-start;
+    flex: 0 0 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    /* Оттолкнуть надписи вправо */
+    margin: 0 10px 0 0;
+
+}
+ 
+/* Рисуем кружочек, который будет появляться при выборе */
+.options__label::after{
+    content: "";
+    /* Анимация  */
+    transition: 0.5s ease 0s;
+    position: absolute;
+    top: 4px;
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    background-color: rgba(47, 182, 29, 0.342);
+    border-radius: 50%;
+    transform: scale(0);
+
+}
+
+
+/* Выпадающий список */
+.select{
+    position: relative;
+}
+
+
+
+.form__select.value{
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    
+}
+
+.select__item {
+    position: relative;
+}
+
+/* .select__title {}
+/* выбор фпйла */
+.file__item{
+    position: relative;
+
+}
+
+.file__input{
+    /* На кнопку наклдывается элемент формы, ну это чисто опытным путем можно только сделать и запомить нахуй */
+    position:absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.file__button {
+    display: inline-flex;
+    min-height: 40px;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(47, 182, 29, 0.342);
+    padding: 0 20px;
+    
+}
+
+.file__prewiew{
+    display: inline-block;
+    max-width: 100px;
+}
+
+.file__prewiew img {
+    max-width: 100%;
+}
+
+
+/* Чекбоксы */
+
+
+.checkbox._error .checkbox__label::before {
+    box-shadow: 0 0 15px red;
+}
+.checkbox__input{
+    display: none;
+}
+
+
+
+
+.checkbox__input:checked + .checkbox__label::after {
+    transform: scale(1);
+}
+
+.checkbox__label {
+    font-size: 16px;
+    line-height: 140%;
+    align-items: center;
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox__label::before{
+    content: "";
+    align-self: flex-start;
+    flex: 0 0 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 0 10px 0 0;;
+
+}
+
+
+
+.checkbox__label::after{
+    transition: 0.5s ease 0s;
+    content: "";
+    width: 16px;
+    left: 4px;
+    top: 4px;
+    height: 16px;
+    position: absolute;
+    background-color: rgba(47, 182, 29, 0.342);
+    border-radius: 4px;
+
+    transform: scale(0)
+}
+
+
+
+/* Кнопка отправки */
+
+
+.form__button {
+    /* На всю щирину */
+    
+    width: 100%;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    min-height: 60px;
+    background-color: rgba(47, 182, 29, 0.342);
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color:#fff;
+    border-radius: 20px;
+    cursor: pointer;
+
+    box-shadow: 0 5px 0 rgb(121, 95, 95);
+    position: relative;
+    top: 0;
+}
+
+
+.form__button:hover {
+    transition: 0.5s ease 0s;
+    background-color: rgba(29, 80, 22, 0.342);
+    color:rgb(105, 77, 77);
+}
+
+
+.form__button:active {
+    top: 3px;
+    box-shadow: 0 5px 0 rgb(255, 255, 255);
+
+}
+
+/*
